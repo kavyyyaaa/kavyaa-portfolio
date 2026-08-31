@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kavyaa Jaiswal — project case study">
+  <title>Project Case Study — Kavyaa Jaiswal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .case-page{padding-top:70px;padding-bottom:100px}
+    .case-back{display:inline-flex;gap:8px;color:#858891;font:500 10px "DM Mono",monospace;text-transform:uppercase;margin-bottom:55px}
+    .case-back:hover{color:var(--accent)}
+    .case-hero{display:grid;grid-template-columns:1fr 360px;gap:70px;align-items:end;padding-bottom:70px;border-bottom:1px solid var(--line)}
+    .case-hero h1{font-size:clamp(48px,7vw,82px);max-width:800px}
+    .case-summary{color:var(--muted);font-size:16px;max-width:720px;margin-top:24px}
+    .case-side{border:1px solid var(--line);border-radius:20px;padding:22px;background:#0e1014}
+    .case-side .mono{color:#686b74;margin-bottom:15px}
+    .case-side a{display:block;padding:12px 0;border-top:1px solid var(--line);font-size:12px;font-weight:800}
+    .case-side a:first-of-type{border-top:0}
+    .case-body{display:grid;grid-template-columns:220px 1fr;gap:65px;margin-top:70px}
+    .case-nav{position:sticky;top:105px;align-self:start}
+    .case-nav a{display:block;color:#646770;font:500 10px "DM Mono",monospace;text-transform:uppercase;padding:7px 0}
+    .case-nav a:hover{color:var(--accent)}
+    .case-content{max-width:820px}
+    .case-block{padding-bottom:60px;margin-bottom:60px;border-bottom:1px solid var(--line)}
+    .case-block:last-child{border-bottom:0}
+    .case-block h2{font-size:34px;margin-bottom:18px}
+    .case-block p{font-size:14px;color:var(--muted);margin-bottom:14px}
+    .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
+    .feature-item{border:1px solid var(--line);border-radius:14px;padding:15px;background:#0d0f12;font-size:12px;color:#c0c2c8}
+    .pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:28px}
+    .pipeline div{border:1px solid var(--line);border-radius:13px;padding:17px 10px;min-height:90px;background:#101216}
+    .pipeline b{display:block;color:var(--accent);font:500 9px "DM Mono",monospace;margin-bottom:9px}
+    .pipeline span{font-size:11px;font-weight:700}
+    .case-image{width:100%;display:block;border:1px solid var(--line);border-radius:18px;margin:25px 0;background:#111}
+    .image-caption{font:500 9px "DM Mono",monospace;color:#666a72;text-transform:uppercase;margin-top:-12px;margin-bottom:28px}
+    .stack{display:flex;gap:8px;flex-wrap:wrap}.stack span{font:500 9px "DM Mono",monospace;border:1px solid var(--line);border-radius:999px;padding:7px 9px;color:#a7aab2}
+    @media(max-width:850px){.case-hero{grid-template-columns:1fr;gap:30px}.case-body{grid-template-columns:1fr}.case-nav{position:static;display:flex;gap:18px;flex-wrap:wrap}.pipeline{grid-template-columns:1fr 1fr}.feature-list{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="nav-wrap">
+    <nav class="nav container">
+      <a class="brand" href="index.html"><span class="brand-mark">KJ</span><span>Kavyaa Jaiswal</span></a>
+      <div class="nav-links">
+        <a href="index.html#work">Work</a><a href="index.html#experience">Experience</a><a href="index.html#skills">Skills</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a>
+      </div>
+      <a class="nav-cta" href="Kavyaa_Jaiswal_Resume.pdf" download>Resume ↗</a>
+    </nav>
+  </header>
+
+  <main class="case-page container" id="case"></main>
+  <footer class="footer container"><span>© 2026 Kavyaa Jaiswal</span><span>Built with curiosity + code.</span></footer>
+
+<script>
+const data = {
+ "01": {
+   title:"Multi-Agent AI Data Analyst",
+   type:"AI / DATA ANALYTICS",
+   summary:"A full-stack data analytics platform that turns a CSV upload into exploration, visualizations, AI-generated insights, machine-learning predictions and a downloadable PDF report.",
+   github:"https://github.com/kavyyyaaa/Multi-Agent-AI-Data-Analyst",
+   stack:["React.js","Vite","FastAPI","Python","Pandas","NumPy","Scikit-learn","Google Gemini","Plotly.js","Axios"],
+   problem:"Data analysis often requires moving between data-cleaning notebooks, visualization tools, model-building code and report-writing. This project brings those stages into one dashboard so a user can upload a dataset and move from raw data to a structured analysis workflow.",
+   approach:"The application uses a modular multi-agent workflow. A dataset is uploaded through the React frontend, sent to a FastAPI backend, processed by specialized agents, visualized with Plotly, passed through a prediction workflow, and finally assembled into a downloadable report.",
+   features:["CSV upload and validation","Dataset summary and quality checks","Interactive data preview","Dynamic Plotly visualizations","AI-generated insights","Machine-learning prediction workflow","Downloadable PDF reports","Responsive dashboard"],
+   pipeline:["Upload dataset","Analyze data","Generate insights","Visualize + predict","Generate report"],
+   architecture:"React provides the interactive dashboard while FastAPI acts as the processing layer. The backend separates analysis, insight generation and prediction responsibilities, with Plotly for charts and a report generator for PDF export.",
+   workflow:["User uploads CSV","Analysis agent cleans and summarizes data","Insight agent generates observations","Prediction agent trains/evaluates a model","Plotly renders visualizations","Report is generated and displayed"],
+   images:[
+     ["https://raw.githubusercontent.com/kavyyyaaa/Multi-Agent-AI-Data-Analyst/main/screenshots/dashboard.jpeg","Dashboard"],
+     ["https://raw.githubusercontent.com/kavyyyaaa/Multi-Agent-AI-Data-Analyst/main/screenshots/insights.jpeg","AI Insights"]
+   ]
+ },
+ "02": {
+   title:"ForgePredict AI",
+   type:"PREDICTIVE MAINTENANCE / XAI",
+   summary:"A Formula 1-inspired industrial equipment health platform combining telemetry, machine learning, forecasting and explainable AI to predict failures and estimate Remaining Useful Life.",
+   github:"https://github.com/kavyyyaaa/ForgePredict-AI",
+   stack:["Python","XGBoost","Scikit-learn","SHAP","Pandas","NumPy","Plotly Dash","Double Exponential Smoothing"],
+   problem:"Unexpected equipment failures can create costly downtime and production delays. Traditional fixed-interval maintenance does not always reflect the actual health of a machine.",
+   approach:"ForgePredict combines telemetry generation, feature engineering, XGBoost classification and regression, forecasting, and explainability. The outputs feed a maintenance strategy engine and an interactive dashboard.",
+   features:["Failure prediction","Remaining Useful Life estimation","XGBoost classification + regression","SHAP / feature-importance explanations","Industrial telemetry dashboard","Maintenance strategy simulation","Historical replay","AI maintenance assistant","ML performance analytics","PDF reporting"],
+   pipeline:["Telemetry","Feature engineering","XGBoost models","Failure + RUL","Maintenance strategy"],
+   architecture:"Industrial sensor signals are represented as telemetry, transformed through feature engineering, and passed into an XGBoost classifier for failure probability and an XGBoost regressor for RUL. Double Exponential Smoothing contributes forecasting information before results reach the maintenance strategy and dashboard layers.",
+   workflow:["Generate telemetry","Engineer predictive features","Classify failure risk","Estimate RUL","Apply maintenance strategy","Explain and visualize results"],
+   images:[
+     ["https://raw.githubusercontent.com/kavyyyaaa/ForgePredict-AI/main/screenshots/dashboard.jpeg","Control room dashboard"],
+     ["https://raw.githubusercontent.com/kavyyyaaa/ForgePredict-AI/main/screenshots/xai_diagnostic.jpeg","Explainable AI diagnostics"]
+   ]
+ },
+ "03": {
+   title:"MarketMind",
+   type:"FORECASTING / RISK ANALYTICS",
+   summary:"An advanced stock forecasting and risk-audit dashboard combining multiple forecasting models, technical indicators, quantitative risk metrics and AI-generated executive reporting.",
+   github:"https://github.com/kavyyyaaa/Marketmind",
+   stack:["Python","Flask","Pandas","NumPy","Scikit-learn","XGBoost","Prophet","Plotly.js","Google Gemini","FPDF"],
+   problem:"A useful market-analysis interface needs more than a price chart. Forecasts, technical signals and risk measures need to be presented together so a user can understand both potential direction and exposure.",
+   approach:"MarketMind combines Prophet, XGBoost and an MLP into an equally weighted ensemble blend, then places the forecasts alongside technical indicators and a quantitative risk audit. A Gemini-powered executive report adds qualitative interpretation, with a rule-based fallback when an API key is unavailable.",
+   features:["Executive dashboard","Prophet forecast","XGBoost forecast","MLP trend fitting","Ensemble blend","SMA and Bollinger Bands","RSI and MACD","Value at Risk","Sharpe ratio","Maximum drawdown","S&P 500 beta","AI-generated executive report","PDF and CSV exports"],
+   pipeline:["Market data","Feature + indicators","Model forecasts","Risk audit","Executive insight"],
+   architecture:"The Flask backend coordinates data retrieval and analysis, while the frontend uses HTML, CSS, vanilla JavaScript and Plotly.js for the dashboard. Forecasting, risk analysis, AI explanation and report generation are separated into dedicated modules.",
+   workflow:["Fetch market data","Calculate indicators","Generate model forecasts","Blend forecasts","Compute risk metrics","Generate executive report"],
+   images:[]
+ },
+ "04": {
+   title:"VisionSearch",
+   type:"COMPUTER VISION / VECTOR SEARCH",
+   summary:"A deep-learning visual search engine that retrieves visually similar fashion products using ResNet-50 embeddings, FAISS nearest-neighbor search and ORB feature verification.",
+   github:"https://github.com/kavyyyaaa/VisionSearch",
+   stack:["Python","PyTorch","Torchvision","ResNet-50","FAISS","OpenCV","Flask","NumPy","Pillow","PCA"],
+   problem:"Text metadata is not always enough to describe the visual characteristics of clothing. VisionSearch explores image-based retrieval so users can search for visually similar products using an image itself.",
+   approach:"Each image is preprocessed and passed through a pretrained ResNet-50 feature extractor. The final classification layer is removed so the network produces a 2048-dimensional embedding. Embeddings are normalized and indexed in FAISS for fast nearest-neighbor retrieval, then candidates are verified using ORB feature matching.",
+   features:["Image-based search","2048-dimensional ResNet-50 embeddings","FAISS vector similarity search","ORB verification","PCA embedding visualization","Similarity ranking","Top-1 / Top-5 evaluation","Precision@K and Recall@K","Interactive search dashboard"],
+   pipeline:["Query image","ResNet-50","2048-D embedding","FAISS search","ORB verification"],
+   architecture:"The retrieval pipeline separates deep feature extraction from vector search and local feature verification. PCA provides a second view of the embedding space by projecting high-dimensional features into two dimensions.",
+   workflow:["Upload image","Resize and normalize","Extract deep features","Normalize embedding","Search FAISS index","Retrieve Top-K","Verify with ORB","Display ranked results"],
+   images:[]
+ }
+};
+
+const id = new URLSearchParams(location.search).get("id") || "01";
+const p = data[id] || data["01"];
+const el = document.getElementById("case");
+
+el.innerHTML = `
+  <a class="case-back" href="index.html#work">← Back to selected work</a>
+  <section class="case-hero">
+    <div>
+      <p class="section-kicker">${p.type}</p>
+      <h1>${p.title}</h1>
+      <p class="case-summary">${p.summary}</p>
+    </div>
+    <aside class="case-side">
+      <p class="mono">PROJECT LINKS</p>
+      <a href="${p.github}" target="_blank" rel="noreferrer">View source on GitHub ↗</a>
+      <a href="index.html#work">Back to portfolio ↗</a>
+    </aside>
+  </section>
+
+  <section class="case-body">
+    <aside class="case-nav">
+      <a href="#problem">Problem</a><a href="#approach">Approach</a><a href="#features">Features</a>
+      <a href="#architecture">Architecture</a><a href="#workflow">Workflow</a><a href="#stack">Stack</a>
+    </aside>
+    <div class="case-content">
+      <article class="case-block" id="problem"><p class="section-kicker">01 / PROBLEM</p><h2>Why I built it.</h2><p>${p.problem}</p></article>
+      <article class="case-block" id="approach"><p class="section-kicker">02 / APPROACH</p><h2>How it works.</h2><p>${p.approach}</p></article>
+      <article class="case-block" id="features"><p class="section-kicker">03 / FEATURES</p><h2>What the system does.</h2><div class="feature-list">${p.features.map(x=>`<div class="feature-item">${x}</div>`).join("")}</div></article>
+      <article class="case-block" id="architecture"><p class="section-kicker">04 / ARCHITECTURE</p><h2>From input to insight.</h2><p>${p.architecture}</p><div class="pipeline">${p.pipeline.map((x,i)=>`<div><b>0${i+1}</b><span>${x}</span></div>`).join("")}</div></article>
+      <article class="case-block" id="workflow"><p class="section-kicker">05 / WORKFLOW</p><h2>The implementation flow.</h2><div class="feature-list">${p.workflow.map((x,i)=>`<div class="feature-item"><span class="mono">STEP ${String(i+1).padStart(2,"0")}</span><br><br>${x}</div>`).join("")}</div></article>
+      ${p.images.length ? `<article class="case-block"><p class="section-kicker">06 / VISUALS</p><h2>Inside the application.</h2>${p.images.map(img=>`<img class="case-image" src="${img[0]}" alt="${img[1]}" loading="lazy"><p class="image-caption">${img[1]}</p>`).join("")}</article>` : ""}
+      <article class="case-block" id="stack"><p class="section-kicker">07 / TECH STACK</p><h2>Built with.</h2><div class="stack">${p.stack.map(x=>`<span>${x}</span>`).join("")}</div></article>
+    </div>
+  </section>
+`;
+</script>
+</body>
+</html>
