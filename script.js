@@ -190,3 +190,54 @@ async function fetchRecentGitHubRepos(username = "kavyyyaaa") {
     return [];
   }
 }
+
+// Premium intro, scroll progress and subtle cursor lighting.
+const introScreen = document.getElementById("introScreen");
+const enterPortfolio = document.getElementById("enterPortfolio");
+const skipIntro = document.getElementById("skipIntro");
+const cursorGlow = document.getElementById("cursorGlow");
+const scrollProgress = document.getElementById("scrollProgress");
+
+function closeIntro() {
+  if (!introScreen) return;
+  introScreen.classList.add("is-hidden");
+  try { sessionStorage.setItem("kavyaaIntroSeen", "1"); } catch(e) {}
+}
+
+try {
+  if (sessionStorage.getItem("kavyaaIntroSeen") === "1") introScreen?.classList.add("is-hidden");
+} catch(e) {}
+
+enterPortfolio?.addEventListener("click", closeIntro);
+skipIntro?.addEventListener("click", closeIntro);
+
+window.addEventListener("scroll", () => {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = max > 0 ? (window.scrollY / max) * 100 : 0;
+  if (scrollProgress) scrollProgress.style.width = `${progress}%`;
+}, { passive: true });
+
+document.addEventListener("pointermove", (e) => {
+  if (!cursorGlow || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  cursorGlow.style.opacity = "1";
+  cursorGlow.style.left = `${e.clientX}px`;
+  cursorGlow.style.top = `${e.clientY}px`;
+}, { passive: true });
+
+document.addEventListener("mouseleave", () => { if (cursorGlow) cursorGlow.style.opacity = "0"; });
+
+// Gentle 3D tilt on larger screens; disabled on touch devices.
+if (window.matchMedia("(pointer: fine)").matches) {
+  document.addEventListener("pointermove", (e) => {
+    const card = e.target.closest(".project-card, .cert-card, .research-card, .skill-card");
+    if (!card) return;
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - .5;
+    const y = (e.clientY - r.top) / r.height - .5;
+    card.style.transform = `perspective(900px) rotateX(${(-y*2.2).toFixed(2)}deg) rotateY(${(x*2.2).toFixed(2)}deg) translateY(-5px)`;
+  }, { passive: true });
+  document.addEventListener("pointerout", (e) => {
+    const card = e.target.closest?.(".project-card, .cert-card, .research-card, .skill-card");
+    if (card && !card.contains(e.relatedTarget)) card.style.transform = "";
+  }, { passive: true });
+}

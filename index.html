@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Kavyaa Jaiswal — AI & Data Science portfolio. Data analytics, machine learning, forecasting, computer vision and AI systems." />
   <title>Kavyaa Jaiswal — AI & Data Science</title>
-  <link rel="canonical" href="https://YOUR-DOMAIN.example/">
+  <link rel="canonical" href="https://kavyaa-portfolio-six.vercel.app/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <meta property="og:title" content="Kavyaa Jaiswal — AI & Data Science">
   <meta property="og:description" content="Data analytics, machine learning, forecasting, computer vision and AI systems.">
@@ -18,6 +18,23 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
+  <div class="intro-screen" id="introScreen" aria-label="Portfolio introduction">
+    <div class="intro-grid"></div>
+    <div class="intro-glow intro-glow-a"></div>
+    <div class="intro-glow intro-glow-b"></div>
+    <div class="intro-content">
+      <p class="intro-kicker"><span></span> KAVYAA JAISWAL / AI & DATA SCIENCE</p>
+      <h1>Every dataset has a story.<br><em>I build the systems that help uncover it.</em></h1>
+      <div class="intro-actions">
+        <button class="intro-enter" id="enterPortfolio">Enter portfolio <span>↗</span></button>
+        <button class="intro-skip" id="skipIntro">Skip intro</button>
+      </div>
+    </div>
+    <div class="intro-corner">SYSTEM INITIALIZING <span>●</span></div>
+  </div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
   <div class="noise"></div>
 
   <header class="nav-wrap">
@@ -32,6 +49,9 @@
         <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
         <a href="#about">About</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#research">Research & IP</a>
+        <a href="#certifications">Certificates</a>
         <a href="#contact">Contact</a>
       </div>
       <a class="nav-cta" href="Kavyaa_Jaiswal_Resume.pdf" download>Resume ↗</a>
@@ -167,34 +187,167 @@
       </div>
     </section>
 
-    <section class="section container">
-      <div class="credentials-grid">
-        <article class="credential-card reveal">
+    <section id="education" class="section container education-section">
+      <div class="section-head reveal">
+        <div>
           <p class="section-kicker">05 / EDUCATION</p>
-          <h3>B.Tech — Artificial Intelligence & Data Science</h3>
+          <h2>Built on a strong <em>foundation.</em></h2>
+        </div>
+      </div>
+      <div class="education-card reveal">
+        <div class="education-main">
+          <span class="mono">2022 — 2026</span>
+          <h3>Bachelor of Technology — Artificial Intelligence & Data Science</h3>
           <p>Ajeenkya DY Patil University, Pune</p>
-          <div class="credential-meta"><span>2022 — 2026</span><strong>CGPA 8.50 / 10</strong></div>
-        </article>
-        <article class="credential-card reveal">
-          <p class="section-kicker">06 / RESEARCH & IP</p>
-          <h3>AI-Based Brand/Logo Detection & Obfuscation in Videos</h3>
-          <p>Government of India Copyright Registration</p>
-          <div class="credential-meta"><span>Achievement</span><strong>Registered</strong></div>
-        </article>
-        <article class="credential-card reveal">
-          <p class="section-kicker">07 / CERTIFICATIONS</p>
-          <h3>Google Analytics Certification</h3>
-          <p>Google</p>
-          <div class="credential-meta"><span>Certification</span><strong>Google</strong></div>
-          <div class="mini-cert"><span>Python Essentials 1</span><small>Cisco Networking Academy</small></div>
-        </article>
+        </div>
+        <div class="education-score"><span>CGPA</span><strong>8.50</strong><small>/ 10</small></div>
+      </div>
+    </section>
+
+    <section id="achievements" class="section container achievements-section">
+      <div class="section-head reveal">
+        <div>
+          <p class="section-kicker">06 / ACHIEVEMENTS</p>
+          <h2>A signal of <em>consistency.</em></h2>
+        </div>
+        <p class="section-intro">Academic performance that reflects a strong technical foundation.</p>
+      </div>
+      <div class="achievement-hero reveal">
+        <div class="achievement-orbit"></div>
+        <div class="achievement-value"><strong>8.50</strong><span>/ 10 CGPA</span></div>
+        <div class="achievement-copy">
+          <span class="mono">B.TECH / AI & DATA SCIENCE</span>
+          <h3>Ajeenkya DY Patil University, Pune</h3>
+          <p>2022 — 2026</p>
+        </div>
+        <div class="achievement-code">KJ · 08.50 · 2026</div>
+      </div>
+    </section>
+
+    <section id="research" class="section section-alt research-section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-kicker">07 / RESEARCH & IP</p>
+            <h2>Work with a <em>claim.</em></h2>
+          </div>
+          <p class="section-intro">Research and intellectual property credentials — with the original documents available to inspect.</p>
+        </div>
+        <div class="research-grid">
+          <article class="research-card reveal">
+            <div class="research-preview">
+              <img src="certificates/iemcon-paper-presentation.png" alt="IEMECON 2025 paper presentation certificate" loading="lazy">
+              <a class="preview-open" href="certificates/iemcon-paper-presentation.pdf" target="_blank" rel="noreferrer">Open certificate ↗</a>
+            </div>
+            <div class="research-body">
+              <span class="cert-tag">PAPER PRESENTATION</span>
+              <h3>An Analytical Review of Image Segmentation Techniques & Logo Detection</h3>
+              <p>IEMECON 2025 · UEM Jaipur · 08 — 10 DEC 2025</p>
+              <a class="research-link" href="certificates/iemcon-paper-presentation.pdf" target="_blank" rel="noreferrer">View original certificate ↗</a>
+            </div>
+          </article>
+          <article class="research-card reveal">
+            <div class="research-preview">
+              <img src="certificates/government-of-india-copyright-registration.png" alt="Government of India copyright certificate" loading="lazy">
+              <a class="preview-open" href="certificates/government-of-india-copyright-registration.pdf" target="_blank" rel="noreferrer">Open certificate ↗</a>
+            </div>
+            <div class="research-body">
+              <span class="cert-tag">GOVERNMENT OF INDIA</span>
+              <h3>AI-Based Brand/Logo Detection & Obfuscation in Videos</h3>
+              <p>Copyright Registration · Certificate No. LD-20250179239 · 30 DEC 2025</p>
+              <a class="research-link" href="certificates/government-of-india-copyright-registration.pdf" target="_blank" rel="noreferrer">View original certificate ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications" class="section section-alt certification-section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-kicker">08 / CERTIFICATIONS</p>
+            <h2>Credentials that support the <em>work.</em></h2>
+          </div>
+          <p class="section-intro">AI, analytics and industry credentials. Preview a certificate or open the original document in a new tab.</p>
+          <div class="cert-count mono">06 VERIFIED CREDENTIALS</div>
+        </div>
+
+        <div class="cert-grid">
+          <article class="cert-card reveal">
+            <a class="cert-preview" href="certificates/hugging-face-fundamentals-of-agents.webp" target="_blank" rel="noreferrer" aria-label="View Hugging Face certificate">
+              <img src="certificates/hugging-face-fundamentals-of-agents.webp" alt="Hugging Face Fundamentals of Agents certificate" loading="lazy">
+            </a>
+            <div class="cert-body">
+              <div><span class="cert-index">01</span><span class="cert-tag">AI AGENTS</span></div>
+              <h3>Fundamentals of Agents</h3>
+              <p>Hugging Face Agents Course</p>
+              <div class="cert-footer"><span>01 SEP 2026</span><a href="certificates/hugging-face-fundamentals-of-agents.webp" target="_blank" rel="noreferrer">View Certificate ↗</a></div>
+            </div>
+          </article>
+          <article class="cert-card reveal">
+            <a class="cert-preview" href="certificates/openai-ai-foundations.pdf" target="_blank" rel="noreferrer" aria-label="View OpenAI AI Foundations certificate">
+              <img src="certificates/openai-ai-foundations.png" alt="OpenAI AI Foundations certificate" loading="lazy">
+            </a>
+            <div class="cert-body">
+              <div><span class="cert-index">02</span><span class="cert-tag">OPENAI</span></div>
+              <h3>AI Foundations</h3>
+              <p>OpenAI Academy</p>
+              <div class="cert-footer"><span>01 SEP 2026</span><a href="certificates/openai-ai-foundations.pdf" target="_blank" rel="noreferrer">View Certificate ↗</a></div>
+            </div>
+          </article>
+          <article class="cert-card reveal">
+            <a class="cert-preview" href="certificates/openai-applied-ai-foundations.pdf" target="_blank" rel="noreferrer" aria-label="View OpenAI Applied AI Foundations certificate">
+              <img src="certificates/openai-applied-ai-foundations.png" alt="OpenAI Applied AI Foundations certificate" loading="lazy">
+            </a>
+            <div class="cert-body">
+              <div><span class="cert-index">03</span><span class="cert-tag">OPENAI</span></div>
+              <h3>Applied AI Foundations</h3>
+              <p>OpenAI Academy</p>
+              <div class="cert-footer"><span>01 SEP 2026</span><a href="certificates/openai-applied-ai-foundations.pdf" target="_blank" rel="noreferrer">View Certificate ↗</a></div>
+            </div>
+          </article>
+          <article class="cert-card reveal">
+            <a class="cert-preview" href="certificates/deloitte-data-analytics-job-simulation.pdf" target="_blank" rel="noreferrer" aria-label="View Deloitte certificate">
+              <img src="certificates/deloitte-data-analytics-job-simulation.png" alt="Deloitte Data Analytics Job Simulation certificate" loading="lazy">
+            </a>
+            <div class="cert-body">
+              <div><span class="cert-index">04</span><span class="cert-tag">ANALYTICS</span></div>
+              <h3>Data Analytics Job Simulation</h3>
+              <p>Deloitte · Forage</p>
+              <div class="cert-footer"><span>18 JUL 2025</span><a href="certificates/deloitte-data-analytics-job-simulation.pdf" target="_blank" rel="noreferrer">View Certificate ↗</a></div>
+            </div>
+          </article>
+          <article class="cert-card reveal">
+            <a class="cert-preview" href="certificates/python-essentials-1.pdf" target="_blank" rel="noreferrer" aria-label="View Python Essentials 1 certificate">
+              <img src="certificates/python-essentials-1.png" alt="Python Essentials 1 certificate" loading="lazy">
+            </a>
+            <div class="cert-body">
+              <div><span class="cert-index">05</span><span class="cert-tag">PYTHON</span></div>
+              <h3>Python Essentials 1</h3>
+              <p>Cisco Networking Academy · NSDC</p>
+              <div class="cert-footer"><span>28 APR 2026</span><a href="certificates/python-essentials-1.pdf" target="_blank" rel="noreferrer">View Certificate ↗</a></div>
+            </div>
+          </article>
+          <article class="cert-card reveal">
+            <a class="cert-preview" href="certificates/jindal-steel-internship.pdf" target="_blank" rel="noreferrer" aria-label="View Jindal Steel internship certificate">
+              <img src="certificates/jindal-steel-internship.png" alt="Jindal Steel internship certificate" loading="lazy">
+            </a>
+            <div class="cert-body">
+              <div><span class="cert-index">06</span><span class="cert-tag">INDUSTRY</span></div>
+              <h3>AI / Data Science Internship</h3>
+              <p>Jindal Steel · Central Automation Cell</p>
+              <div class="cert-footer"><span>09 JAN — 09 JUL 2026</span><a href="certificates/jindal-steel-internship.pdf" target="_blank" rel="noreferrer">View Certificate ↗</a></div>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
     <section class="github-band">
       <div class="container github-inner reveal">
         <div>
-          <p class="section-kicker">08 / OPEN SOURCE</p>
+          <p class="section-kicker">09 / OPEN SOURCE</p>
           <h2>More code lives on <em>GitHub.</em></h2>
           <p>Explore repositories, experiments and the implementation behind these projects.</p>
         </div>
@@ -204,7 +357,7 @@
 
     <section id="contact" class="section contact-section container">
       <div class="contact-card reveal">
-        <p class="section-kicker">09 / CONTACT</p>
+        <p class="section-kicker">10 / CONTACT</p>
         <h2>Let's build something <em>useful.</em></h2>
         <p>I'm open to opportunities in data analytics, machine learning, AI and related technical roles.</p>
         <a class="email" href="mailto:kavyaajaiswalwork@gmail.com">kavyaajaiswalwork@gmail.com</a>
