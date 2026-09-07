@@ -241,3 +241,21 @@ if (window.matchMedia("(pointer: fine)").matches) {
     if (card && !card.contains(e.relatedTarget)) card.style.transform = "";
   }, { passive: true });
 }
+
+// Subtle hero parallax: adds depth without changing the layout.
+if (window.matchMedia("(pointer: fine)").matches) {
+  const heroVisual = document.querySelector(".hero-visual");
+  if (heroVisual) {
+    let raf = null;
+    document.addEventListener("pointermove", (e) => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const x = (e.clientX / window.innerWidth - .5);
+        const y = (e.clientY / window.innerHeight - .5);
+        heroVisual.style.transform = `translate3d(${(x*7).toFixed(2)}px,${(y*5).toFixed(2)}px,0)`;
+      });
+    }, { passive: true });
+    document.addEventListener("mouseleave", () => { heroVisual.style.transform = ""; });
+  }
+}
