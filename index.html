@@ -23,7 +23,7 @@
     <div class="intro-content">
       <p class="intro-kicker"><span></span> KAVYAA JAISWAL / AI & DATA SCIENCE</p>
       <h1 class="intro-title"><span>Every dataset has a story.</span><em>I build the systems that help uncover it.</em></h1>
-      <div class="intro-actions"><button class="intro-enter" id="enterPortfolio">Enter portfolio <span>↗</span></button><button class="intro-skip" id="skipIntro">Skip intro</button></div>
+      <div class="intro-actions" style="position:relative;z-index:99999;pointer-events:auto"><button type="button" class="intro-enter" id="enterPortfolio" onclick="document.getElementById('introScreen').classList.add('is-hidden');try{sessionStorage.setItem('kavyaaIntroSeen','1')}catch(e){}">Enter portfolio <span>↗</span></button><button type="button" class="intro-skip" id="skipIntro" onclick="document.getElementById('introScreen').classList.add('is-hidden');try{sessionStorage.setItem('kavyaaIntroSeen','1')}catch(e){}">Skip intro</button></div>
     </div>
     <div class="intro-corner">SYSTEM INITIALIZING <span>●</span></div>
   </div>
