@@ -221,41 +221,5 @@ window.addEventListener("scroll", () => {
   });
 }, { passive: true });
 
-// One throttled pointer listener instead of several competing listeners.
-const finePointer = window.matchMedia("(pointer: fine)").matches;
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const heroVisual = document.querySelector(".hero-visual");
-let pointerFrame = null, px = 0, py = 0, hoveredCard = null;
-if (finePointer && !reducedMotion) {
-  document.addEventListener("pointermove", (e) => {
-    px = e.clientX; py = e.clientY;
-    if (pointerFrame) return;
-    pointerFrame = requestAnimationFrame(() => {
-      if (cursorGlow) {
-        cursorGlow.style.left = `${px}px`;
-        cursorGlow.style.top = `${py}px`;
-      }
-      if (heroVisual) {
-        const x = px / window.innerWidth - .5;
-        const y = py / window.innerHeight - .5;
-        heroVisual.style.setProperty("--mx", `${(x*7).toFixed(2)}px`);
-        heroVisual.style.setProperty("--my", `${(y*5).toFixed(2)}px`);
-      }
-      pointerFrame = null;
-    });
-  }, { passive: true });
-  document.addEventListener("pointerover", (e) => {
-    const card = e.target.closest?.(".project-card, .cert-card, .research-card, .skill-card");
-    if (card) {
-      hoveredCard = card;
-      card.classList.add("is-hovered");
-    }
-  }, { passive: true });
-  document.addEventListener("pointerout", (e) => {
-    const card = e.target.closest?.(".project-card, .cert-card, .research-card, .skill-card");
-    if (card && !card.contains(e.relatedTarget)) {
-      card.classList.remove("is-hovered");
-      if (hoveredCard === card) hoveredCard = null;
-    }
-  }, { passive: true });
-}
+// Performance: no global pointer tracking. The portfolio stays responsive on trackpads,
+// touchpads and lower-power laptops while retaining CSS-only hover motion.
