@@ -191,7 +191,7 @@ async function fetchRecentGitHubRepos(username = "kavyyyaaa") {
   }
 }
 
-// Premium intro, scroll progress and subtle cursor lighting.
+// Premium intro, scroll progress and lightweight motion.
 const introScreen = document.getElementById("introScreen");
 const enterPortfolio = document.getElementById("enterPortfolio");
 const skipIntro = document.getElementById("skipIntro");
@@ -203,59 +203,59 @@ function closeIntro() {
   introScreen.classList.add("is-hidden");
   try { sessionStorage.setItem("kavyaaIntroSeen", "1"); } catch(e) {}
 }
-
 try {
   if (sessionStorage.getItem("kavyaaIntroSeen") === "1") introScreen?.classList.add("is-hidden");
 } catch(e) {}
-
 enterPortfolio?.addEventListener("click", closeIntro);
 skipIntro?.addEventListener("click", closeIntro);
 
+let scrollTick = false;
 window.addEventListener("scroll", () => {
-  const max = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = max > 0 ? (window.scrollY / max) * 100 : 0;
-  if (scrollProgress) scrollProgress.style.width = `${progress}%`;
+  if (scrollTick) return;
+  scrollTick = true;
+  requestAnimationFrame(() => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = max > 0 ? (window.scrollY / max) * 100 : 0;
+    if (scrollProgress) scrollProgress.style.width = `${progress}%`;
+    scrollTick = false;
+  });
 }, { passive: true });
 
-document.addEventListener("pointermove", (e) => {
-  if (!cursorGlow || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  cursorGlow.style.opacity = "1";
-  cursorGlow.style.left = `${e.clientX}px`;
-  cursorGlow.style.top = `${e.clientY}px`;
-}, { passive: true });
-
-document.addEventListener("mouseleave", () => { if (cursorGlow) cursorGlow.style.opacity = "0"; });
-
-// Gentle 3D tilt on larger screens; disabled on touch devices.
-if (window.matchMedia("(pointer: fine)").matches) {
+// One throttled pointer listener instead of several competing listeners.
+const finePointer = window.matchMedia("(pointer: fine)").matches;
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const heroVisual = document.querySelector(".hero-visual");
+let pointerFrame = null, px = 0, py = 0, hoveredCard = null;
+if (finePointer && !reducedMotion) {
   document.addEventListener("pointermove", (e) => {
-    const card = e.target.closest(".project-card, .cert-card, .research-card, .skill-card");
-    if (!card) return;
-    const r = card.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - .5;
-    const y = (e.clientY - r.top) / r.height - .5;
-    card.style.transform = `perspective(900px) rotateX(${(-y*2.2).toFixed(2)}deg) rotateY(${(x*2.2).toFixed(2)}deg) translateY(-5px)`;
+    px = e.clientX; py = e.clientY;
+    if (pointerFrame) return;
+    pointerFrame = requestAnimationFrame(() => {
+      if (cursorGlow) {
+        cursorGlow.style.left = `${px}px`;
+        cursorGlow.style.top = `${py}px`;
+      }
+      if (heroVisual) {
+        const x = px / window.innerWidth - .5;
+        const y = py / window.innerHeight - .5;
+        heroVisual.style.setProperty("--mx", `${(x*7).toFixed(2)}px`);
+        heroVisual.style.setProperty("--my", `${(y*5).toFixed(2)}px`);
+      }
+      pointerFrame = null;
+    });
+  }, { passive: true });
+  document.addEventListener("pointerover", (e) => {
+    const card = e.target.closest?.(".project-card, .cert-card, .research-card, .skill-card");
+    if (card) {
+      hoveredCard = card;
+      card.classList.add("is-hovered");
+    }
   }, { passive: true });
   document.addEventListener("pointerout", (e) => {
     const card = e.target.closest?.(".project-card, .cert-card, .research-card, .skill-card");
-    if (card && !card.contains(e.relatedTarget)) card.style.transform = "";
+    if (card && !card.contains(e.relatedTarget)) {
+      card.classList.remove("is-hovered");
+      if (hoveredCard === card) hoveredCard = null;
+    }
   }, { passive: true });
-}
-
-// Subtle hero parallax: adds depth without changing the layout.
-if (window.matchMedia("(pointer: fine)").matches) {
-  const heroVisual = document.querySelector(".hero-visual");
-  if (heroVisual) {
-    let raf = null;
-    document.addEventListener("pointermove", (e) => {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      if (raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const x = (e.clientX / window.innerWidth - .5);
-        const y = (e.clientY / window.innerHeight - .5);
-        heroVisual.style.transform = `translate3d(${(x*7).toFixed(2)}px,${(y*5).toFixed(2)}px,0)`;
-      });
-    }, { passive: true });
-    document.addEventListener("mouseleave", () => { heroVisual.style.transform = ""; });
-  }
 }
