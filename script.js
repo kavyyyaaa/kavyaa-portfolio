@@ -9,10 +9,29 @@ const projects=[
 {id:"08",title:"Customer Segmentation Project",description:"Customer analytics project focused on segmenting customers into meaningful groups for data-driven business insights.",tech:["Python","Pandas","Scikit-learn"],categories:["Data Analytics","Machine Learning"],github:"https://github.com/kavyyyaaa/Customer-Segmentation-Project"}
 ];
 const featuredEl=document.getElementById("featured-projects"),allEl=document.getElementById("all-projects"),filtersEl=document.getElementById("filters");
+const stage=document.getElementById("projectStage"),stageTitle=document.getElementById("stageTitle"),stageDescription=document.getElementById("stageDescription"),stageTech=document.getElementById("stageTech"),stageActions=document.getElementById("stageActions"),stageId=document.getElementById("stageId"),stageCategory=document.getElementById("stageCategory"),stageProgress=document.getElementById("stageProgress"),stageSystem=document.getElementById("stageSystem"),stageList=document.getElementById("stageProjectList");
 function links(p){return `<div class="project-links"><a href="${p.github}" target="_blank" rel="noreferrer">GitHub ↗</a>${p.caseStudy?`<a href="project.html?id=${p.id}">Case study ↗</a>`:""}</div>`}
 function card(p){return `<article class="project-card reveal"><div class="project-top"><span>${p.id} / 04</span><span class="project-type">${p.categories[0]}</span></div><div><h3>${p.title}</h3><p>${p.description}</p></div><div class="project-bottom"><div class="tech-list">${p.tech.map(t=>`<span>${t}</span>`).join("")}</div>${links(p)}</div></article>`}
 function mini(p){return `<article class="mini-project reveal"><span class="project-number">${p.id}</span><h4>${p.title}</h4><p>${p.description}</p><div class="tech-list">${p.tech.slice(0,4).map(t=>`<span>${t}</span>`).join("")}</div>${links(p)}</article>`}
-featuredEl.innerHTML=projects.filter(p=>p.featured).map(card).join("");
+const featured=projects.filter(p=>p.featured);
+function renderStage(p){
+  if(!p||!stage)return;
+  const idx=featured.findIndex(x=>x.id===p.id);
+  stageTitle.textContent=p.title; stageDescription.textContent=p.description;
+  stageId.textContent=p.id; stageSystem.textContent=p.id; stageProgress.textContent=`${p.id} / ${String(featured.length).padStart(2,"0")}`;
+  stageCategory.textContent=p.categories.join(" · ").toUpperCase();
+  stageTech.innerHTML=p.tech.map(t=>`<span>${t}</span>`).join("");
+  stageActions.innerHTML=links(p);
+  stageList.querySelectorAll(".stage-project").forEach(x=>x.classList.toggle("active",x.dataset.id===p.id));
+  const bars=[...document.querySelectorAll("#stageBars i")];
+  bars.forEach((b,i)=>b.style.height=(24+((i+2)*(idx+3)*7)%68)+"%");
+  stage.classList.remove("stage-flash"); void stage.offsetWidth; stage.classList.add("stage-flash");
+}
+if(stageList){
+  stageList.innerHTML=featured.map(p=>`<button class="stage-project" type="button" data-id="${p.id}"><span>${p.id}</span><b>${p.title}</b><i>${p.categories[0]}</i></button>`).join("");
+  stageList.querySelectorAll(".stage-project").forEach(btn=>btn.addEventListener("click",()=>renderStage(featured.find(p=>p.id===btn.dataset.id))));
+  renderStage(featured[0]);
+}
 const more=()=>projects.filter(p=>!p.featured);
 const cats=["All",...new Set(more().flatMap(p=>p.categories))];
 filtersEl.innerHTML=cats.map((c,i)=>`<button class="filter ${i===0?"active":""}" data-filter="${c}">${c}</button>`).join("");
@@ -22,6 +41,10 @@ function renderAll(filter="All"){allEl.innerHTML=more().filter(p=>filter==="All"
 filtersEl.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{filtersEl.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");renderAll(b.dataset.filter)}));
 renderAll();
 observeReveals();
+const stageObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){const p=featured.find(x=>x.id===e.target.dataset.project); if(p)renderStage(p)}})
+},{rootMargin:"-45% 0px -45% 0px",threshold:0});
+document.querySelectorAll(".project-sentinel").forEach(s=>stageObserver.observe(s));
 const nav=document.querySelector(".nav"),menu=document.querySelector(".menu-btn");
 menu?.addEventListener("click",()=>{const open=nav.classList.toggle("open");menu.setAttribute("aria-expanded",open)});
 document.querySelectorAll(".nav-links a").forEach(a=>a.addEventListener("click",()=>nav.classList.remove("open")));
@@ -96,24 +119,34 @@ activateStory(steps[0]);
   tickClock(); setInterval(tickClock,1000);
 })();
 
+// Lightweight ambient telemetry — no mouse tracking, no canvas.
+(function initTelemetry(){
+  const msg=document.getElementById("telemetryMessage"), count=document.getElementById("telemetryCount");
+  if(!msg)return;
+  const messages=["MAPPING FEATURES","TRAINING SIGNALS","VALIDATING OUTPUT","EXPLAINING MODELS","PACKAGING INSIGHT","SYSTEM SYNCHRONIZED"];
+  let i=0;
+  setInterval(()=>{i=(i+1)%messages.length; msg.textContent=messages[i]},1800);
+  let n=0;
+  setInterval(()=>{n=(n+3.7)%100; count.textContent=n.toFixed(1).padStart(4,"0")+"%"},90);
+})();
 
-// Lightweight live navigation telemetry — no pointer tracking, no canvas.
-(function(){
-  const railLabel=document.getElementById('railLabel');
-  const railNumber=document.getElementById('railNumber');
-  const status=document.getElementById('streamStatus');
-  const sections=[
-    ['work','WORK','01'],['experience','BUILD LOG','02'],['skills','TOOLKIT','03'],['about','ABOUT','04'],['education','EDUCATION','05'],['achievements','ACHIEVEMENT','06'],['research','RESEARCH','07'],['certifications','CERTS','08'],['contact','CONTACT','10']
-  ];
-  const update=()=>{
-    let best=null,bestDist=Infinity;
-    const target=innerHeight*.42;
-    sections.forEach(([id,label,num])=>{const el=document.getElementById(id);if(!el)return;const d=Math.abs(el.getBoundingClientRect().top-target);if(d<bestDist){bestDist=d;best=[label,num]}});
-    if(best&&railLabel){railLabel.textContent=best[0];railNumber.textContent=best[1]}
-    if(status){
-      const words=['SIGNAL DETECTED','MAPPING FEATURES','MODEL READY','INSIGHT STREAMING','SYSTEM SYNCHRONIZED'];
-      status.textContent=words[Math.floor(scrollY/520)%words.length];
-    }
-  };
-  addEventListener('scroll',update,{passive:true}); update();
+
+// Recruiter mode: a focused, one-screen route into the portfolio.
+(function initRecruiterMode(){
+  const modal=document.getElementById("recruiterModal"), open=document.getElementById("recruiterOpen"), close=document.getElementById("recruiterClose");
+  if(!modal||!open)return;
+  const setOpen=(state)=>{modal.classList.toggle("open",state);modal.setAttribute("aria-hidden",String(!state));document.body.classList.toggle("modal-open",state);if(state)close?.focus()};
+  open.addEventListener("click",()=>setOpen(true));
+  close?.addEventListener("click",()=>setOpen(false));
+  modal.querySelectorAll("[data-recruiter-close]").forEach(el=>el.addEventListener("click",()=>setOpen(false)));
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&modal.classList.contains("open"))setOpen(false)});
+})();
+
+// Skill constellation: small, accessible interactions with no heavy rendering.
+(function initSkillConstellation(){
+  const nodes=[...document.querySelectorAll(".skill-node")], text=document.getElementById("skillConstellationText");
+  if(!nodes.length||!text)return;
+  const activate=(node)=>{nodes.forEach(n=>n.classList.remove("active"));node.classList.add("active");text.textContent=node.dataset.skill||""};
+  nodes.forEach(node=>node.addEventListener("click",()=>activate(node)));
+  activate(nodes[0]);
 })();

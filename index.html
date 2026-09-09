@@ -20,7 +20,7 @@
 <body>
   <div class="intro-screen" id="introScreen">
     <div class="intro-grid"></div>
-    <div class="intro-grid-glow"></div><div class="intro-streams" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div><div class="intro-core" aria-hidden="true"><div class="core-ring r1"></div><div class="core-ring r2"></div><div class="core-ring r3"></div><i class="core-dot d1"></i><i class="core-dot d2"></i><i class="core-dot d3"></i></div>
+    <div class="intro-grid-glow"></div>
     <div class="intro-glow intro-glow-a"></div><div class="intro-glow intro-glow-b"></div>
     <div class="intro-scanline"></div>
     <div class="intro-orbit orbit-one"></div><div class="intro-orbit orbit-two"></div><div class="intro-orbit orbit-three"></div>
@@ -46,19 +46,22 @@
     <div class="intro-corner"><span id="introClock">00:00:00</span> · SYSTEM ONLINE <b>●</b></div>
   </div>
   <div class="scroll-progress" id="scrollProgress"></div>
-  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div><aside class="system-rail" aria-hidden="true"><span class="rail-top">LIVE / 01</span><i></i><b id="railLabel">WORK</b><em id="railNumber">01</em></aside>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div><div class="site-signal-field" aria-hidden="true">
+    <span class="signal-node n1"></span><span class="signal-node n2"></span><span class="signal-node n3"></span><span class="signal-node n4"></span>
+    <span class="signal-line l1"></span><span class="signal-line l2"></span><span class="signal-line l3"></span>
+  </div>
 
   <header class="nav-wrap">
     <nav class="nav container">
       <a class="brand" href="#top"><span class="brand-mark">KJ</span><span><strong>Kavyaa Jaiswal</strong><small>AI / DATA SCIENCE</small></span></a>
       <button class="menu-btn" aria-label="Toggle navigation" aria-expanded="false">☰</button>
       <div class="nav-links"><a href="#work">Work</a><a href="#experience">Experience</a><a href="#skills">Toolkit</a><a href="#about">About</a><a href="#research">Research</a><a href="#certifications">Certificates</a><a href="#contact">Contact</a></div>
-      <a class="nav-cta" href="Kavyaa_Jaiswal_Resume.pdf" download>Resume ↗</a>
+      <div class="nav-actions"><button class="recruiter-btn" id="recruiterOpen" type="button">Recruiter mode ↗</button><a class="nav-cta" href="Kavyaa_Jaiswal_Resume.pdf" download>Resume ↗</a></div>
     </nav>
   </header>
 
   <main id="top">
-    <section class="hero container"><div class="hero-signal-field" aria-hidden="true"><div class="signal-orbit so1"></div><div class="signal-orbit so2"></div><div class="signal-orbit so3"></div><i class="signal-node sn1"></i><i class="signal-node sn2"></i><i class="signal-node sn3"></i><i class="signal-node sn4"></i><span class="signal-packet sp1"></span><span class="signal-packet sp2"></span><span class="signal-packet sp3"></span></div>
+    <section class="hero container">
       <div class="hero-copy reveal">
         <p class="eyebrow"><span class="pulse"></span> AI & DATA SCIENCE · OPEN TO OPPORTUNITIES</p>
         <div class="hero-label">BUILD LOG · 2026 / 01</div>
@@ -71,6 +74,7 @@
       <div class="hero-pass reveal">
         <div class="pass-top"><span>DEVELOPER PASS</span><span>NO. 01 / 26</span></div>
         <div class="pass-screen">
+          <div class="pass-globe" aria-hidden="true"><span></span><i></i></div>
           <div class="mini-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
           <div class="pass-orbit"></div>
           <div class="pass-status"><span></span> SYSTEMS ONLINE</div>
@@ -84,14 +88,44 @@
 
     <section class="ticker"><div class="ticker-track"><span>DATA ANALYTICS</span><b>✦</b><span>MACHINE LEARNING</span><b>✦</b><span>FORECASTING</span><b>✦</b><span>COMPUTER VISION</span><b>✦</b><span>GENAI</span><b>✦</b><span>PREDICTIVE MAINTENANCE</span><b>✦</b><span>DATA ANALYTICS</span><b>✦</b></div></section>
 
-    <section class="signal-strip" aria-hidden="true"><div class="container"><span>DATA STREAM</span><div class="signal-line"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><strong id="streamStatus">SIGNAL DETECTED</strong></div></section>
-
     <section id="work" class="section container">
       <div class="section-head reveal"><div><p class="section-kicker">01 / SELECTED WORK</p><h2>Things I've <em>built.</em></h2></div><p class="section-intro">Eight projects across analytics, ML, forecasting, computer vision and AI applications.</p></div>
-      <div id="featured-projects" class="project-grid"></div>
+      <div class="project-story" id="projectStory">
+        <div class="project-sticky">
+      <div class="project-stage reveal" id="projectStage">
+        <div class="project-stage-visual">
+          <div class="stage-grid"></div>
+          <div class="stage-orbit stage-orbit-a"></div>
+          <div class="stage-orbit stage-orbit-b"></div>
+          <div class="stage-core"><span></span><i></i></div>
+          <div class="stage-packet packet-a"></div><div class="stage-packet packet-b"></div><div class="stage-packet packet-c"></div>
+          <div class="stage-readout"><span id="stageStatus">SYSTEM ONLINE</span><b id="stageProgress">01 / 04</b></div>
+          <div class="stage-project-id" id="stageId">01</div>
+          <div class="stage-category" id="stageCategory">AI · DATA ANALYTICS</div>
+          <div class="stage-bars" id="stageBars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="project-stage-copy">
+          <div class="stage-kicker mono">SELECTED SYSTEM / <span id="stageSystem">01</span></div>
+          <h3 id="stageTitle">Multi-Agent AI Data Analyst</h3>
+          <p id="stageDescription">Full-stack data analytics platform for CSV analysis, visualization and AI-generated insights, with ML workflows and automated PDF reporting.</p>
+          <div class="stage-tech" id="stageTech"></div>
+          <div class="stage-actions" id="stageActions"></div>
+          <div class="stage-project-list" id="stageProjectList"></div>
+          <p class="stage-hint mono">SCROLL TO SWITCH SYSTEMS ↓</p>
+        </div>
+      </div>
+        </div>
+        <div class="project-sentinels" aria-hidden="true">
+          <div class="project-sentinel" data-project="01"></div>
+          <div class="project-sentinel" data-project="02"></div>
+          <div class="project-sentinel" data-project="03"></div>
+          <div class="project-sentinel" data-project="04"></div>
+        </div>
+      </div>
       <div class="all-work-head reveal"><div><p class="section-kicker">MORE WORK</p><h3>More experiments, same obsession.</h3></div><div id="filters" class="filters" role="tablist"></div></div>
       <div id="all-projects" class="all-projects"></div>
     </section>
+    <div class="signal-strip" aria-hidden="true"><span>SIGNAL DETECTED</span><i></i><b>INGEST → TRAIN → EXPLAIN → SHIP</b><em>SCROLL / SYSTEM LIVE</em></div>
 
     <section id="experience" class="story-section section-alt">
       <div class="container">
@@ -112,10 +146,24 @@
         <article class="experience-card reveal"><div class="exp-date">JAN 2026 — JUL 2026</div><div class="exp-main"><div class="exp-title-row"><div><p class="mono">JINDAL STEEL</p><h3>AI / Data Science Internship</h3></div><span class="exp-index">01</span></div><p>Built a predictive-maintenance solution to detect kiln accretion using industrial temperature data, with real-time equipment monitoring and anomaly detection.</p><a class="project-links" href="internship.html">View internship case study ↗</a><div class="tech-list"><span>Python</span><span>LSTM</span><span>Flask</span><span>FastAPI</span><span>Plotly</span><span>Scikit-learn</span></div></div></article>
       </div>
     </section>
+    <div class="signal-strip" aria-hidden="true"><span>SIGNAL DETECTED</span><i></i><b>COLLECT → MODEL → INSIGHT → IMPACT</b><em>SCROLL / SYSTEM LIVE</em></div>
 
     <section id="skills" class="section container">
       <div class="section-head reveal"><div><p class="section-kicker">03 / TOOLKIT</p><h2>My tools have <em>jobs.</em></h2></div><p class="section-intro">A practical stack for moving from analysis to deployable systems.</p></div>
       <div class="skills-grid reveal"><article class="skill-card"><span class="skill-no">01</span><h3>Data & Analytics</h3><p>Python · SQL · Pandas · NumPy · Tableau · Power BI</p></article><article class="skill-card"><span class="skill-no">02</span><h3>Machine Learning</h3><p>Scikit-learn · XGBoost · Prophet · Predictive modeling</p></article><article class="skill-card"><span class="skill-no">03</span><h3>Deep Learning & Vision</h3><p>ResNet-50 · OpenCV · FAISS · LSTM</p></article><article class="skill-card"><span class="skill-no">04</span><h3>AI Applications</h3><p>FastAPI · Flask · React · Plotly · Dash · Google Gemini</p></article><article class="skill-card"><span class="skill-no">05</span><h3>Developer Tools</h3><p>Git · GitHub · Jupyter · APIs · Full-stack workflows</p></article><article class="skill-card learning"><span class="skill-no">06</span><h3>Currently Exploring</h3><p>GenAI · RAG · AI Agents · advanced SQL · deployment</p><span class="learning-badge">IN PROGRESS</span></article></div>
+      <div class="skill-constellation reveal" id="skillConstellation">
+        <div class="constellation-copy"><p class="section-kicker">LIVE SKILL MAP</p><h3>One stack.<br><em>Many directions.</em></h3><p id="skillConstellationText">Select a node to see where that part of the stack fits into the work.</p><span class="mono">CLICK A NODE →</span></div>
+        <div class="constellation-stage">
+          <span class="constellation-line c-line-1"></span><span class="constellation-line c-line-2"></span><span class="constellation-line c-line-3"></span><span class="constellation-line c-line-4"></span><span class="constellation-line c-line-5"></span><span class="constellation-line c-line-6"></span>
+          <button class="skill-node node-python" data-skill="Python turns raw data into repeatable analysis, modeling and production workflows." type="button">PYTHON</button>
+          <button class="skill-node node-sql" data-skill="SQL helps structure, filter and interrogate the data behind decisions." type="button">SQL</button>
+          <button class="skill-node node-ml" data-skill="Machine learning connects features to forecasts, classification and prediction." type="button">ML</button>
+          <button class="skill-node node-vision" data-skill="Computer vision powers visual search, detection and image understanding." type="button">VISION</button>
+          <button class="skill-node node-genai" data-skill="GenAI adds grounded assistants, insights and agent-style workflows." type="button">GENAI</button>
+          <button class="skill-node node-analytics" data-skill="Analytics turns datasets into dashboards, metrics, reports and action." type="button">ANALYTICS</button>
+          <div class="constellation-core"><span>KJ</span><small>AI / DATA</small></div>
+        </div>
+      </div>
     </section>
 
     <section id="about" class="section section-alt"><div class="container about-grid"><div class="about-label reveal"><p class="section-kicker">04 / ABOUT</p><h2>Curious by default.<br><em>Technical by practice.</em></h2></div><div class="about-copy reveal"><p class="lead">I'm an Artificial Intelligence & Data Science student who enjoys turning real-world problems into practical data and AI solutions.</p><p>My work spans data analytics, forecasting, predictive maintenance, computer vision and AI-powered applications. I like understanding the problem first, then choosing the right data, model and product layer to make the solution useful.</p><div class="stats"><div><strong>2026</strong><span>Graduation</span></div><div><strong>8</strong><span>Projects</span></div><div><strong>1</strong><span>Industry internship</span></div></div></div></div></section>
@@ -138,7 +186,24 @@
     <section class="github-band"><div class="container github-inner reveal"><div><p class="section-kicker">09 / OPEN SOURCE</p><h2>More code lives on <em>GitHub.</em></h2><p>Explore repositories, experiments and the implementation behind these projects.</p></div><a class="btn btn-primary" href="https://github.com/kavyyyaaa" target="_blank">@kavyyyaaa ↗</a></div></section>
     <section id="contact" class="section contact-section container"><div class="contact-card reveal"><p class="section-kicker">10 / CONTACT</p><h2>Let's build something <em>useful.</em></h2><p>I'm open to opportunities in data analytics, machine learning, AI and related technical roles.</p><a class="email" href="mailto:kavyaajaiswalwork@gmail.com">kavyaajaiswalwork@gmail.com</a><div class="contact-links"><a href="mailto:kavyaajaiswalwork@gmail.com">Email ↗</a><a href="https://github.com/kavyyyaaa" target="_blank">GitHub ↗</a><a href="https://www.linkedin.com/in/kavyaa-jaiswal" target="_blank">LinkedIn ↗</a><a href="Kavyaa_Jaiswal_Resume.pdf" download>Resume ↗</a></div></div></section>
   </main>
-  <footer class="footer container"><span>© 2026 Kavyaa Jaiswal</span><span>Built with curiosity + code.</span></footer>
+  <div class="recruiter-modal" id="recruiterModal" aria-hidden="true">
+    <div class="recruiter-backdrop" data-recruiter-close></div>
+    <section class="recruiter-panel" role="dialog" aria-modal="true" aria-labelledby="recruiterTitle">
+      <button class="recruiter-close" id="recruiterClose" type="button" aria-label="Close recruiter mode">×</button>
+      <p class="section-kicker">FAST TRACK / RECRUITER VIEW</p>
+      <h2 id="recruiterTitle">The signal, <em>without the scroll.</em></h2>
+      <p class="recruiter-lead">A compact view of the work, experience and proof points most useful for a hiring review.</p>
+      <div class="recruiter-stats"><div><strong>08</strong><span>PROJECTS</span></div><div><strong>01</strong><span>INDUSTRY INTERNSHIP</span></div><div><strong>06</strong><span>VERIFIED CREDENTIALS</span></div><div><strong>02</strong><span>RESEARCH / IP PROOFS</span></div></div>
+      <div class="recruiter-grid">
+        <a href="#work" data-recruiter-close><span>01</span><b>Selected systems</b><small>Multi-Agent · ForgePredict · MarketMind · VisionSearch</small></a>
+        <a href="#experience" data-recruiter-close><span>02</span><b>Industry experience</b><small>Jindal Steel · AI / Data Science Internship</small></a>
+        <a href="#research" data-recruiter-close><span>03</span><b>Research & IP</b><small>IEMECON paper + Government of India copyright</small></a>
+        <a href="Kavyaa_Jaiswal_Resume.pdf" target="_blank" rel="noreferrer"><span>04</span><b>Résumé</b><small>Open the current résumé</small></a>
+      </div>
+      <div class="recruiter-footer"><a class="btn btn-primary" href="mailto:kavyaajaiswalwork@gmail.com">Start a conversation ↗</a><a class="btn btn-ghost" href="https://github.com/kavyyyaaa" target="_blank" rel="noreferrer">Review the code ↗</a></div>
+    </section>
+  </div>
+  <div class="global-telemetry mono" aria-hidden="true"><span>LIVE SIGNAL</span><b id="telemetryMessage">MAPPING FEATURES</b><i></i><span id="telemetryCount">00.0%</span></div><footer class="footer container"><span>© 2026 Kavyaa Jaiswal</span><span>Built with curiosity + code.</span></footer>
   <script src="script.js"></script>
 </body>
 </html>
