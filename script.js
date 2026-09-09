@@ -22,9 +22,43 @@ function renderAll(filter="All"){allEl.innerHTML=more().filter(p=>filter==="All"
 filtersEl.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{filtersEl.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");renderAll(b.dataset.filter)}));
 renderAll();
 observeReveals();
-const nav=document.querySelector(".nav"),menu=document.querySelector(".menu-btn");menu.addEventListener("click",()=>{const open=nav.classList.toggle("open");menu.setAttribute("aria-expanded",open)});document.querySelectorAll(".nav-links a").forEach(a=>a.addEventListener("click",()=>nav.classList.remove("open")));
-const intro=document.getElementById("introScreen");function closeIntro(){intro?.classList.add("is-hidden");try{sessionStorage.setItem("kavyaaIntroSeen","1")}catch(e){}}try{if(sessionStorage.getItem("kavyaaIntroSeen")==="1")intro?.classList.add("is-hidden")}catch(e){}document.getElementById("enterPortfolio")?.addEventListener("click",closeIntro);document.getElementById("skipIntro")?.addEventListener("click",closeIntro);
-let ticking=false;const progress=document.getElementById("scrollProgress");window.addEventListener("scroll",()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=`${max>0?(scrollY/max)*100:0}%`;ticking=false})},{passive:true});
-// Scroll-story: one active chapter at a time, inspired by editorial portfolio storytelling.
-const steps=[...document.querySelectorAll(".story-step")],storyTitle=document.getElementById("storyTitle"),storyText=document.getElementById("storyText"),storyIndex=document.getElementById("storyIndex"),storyMeter=document.getElementById("storyMeter");
-const storyObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){const s=e.target;steps.forEach(x=>x.classList.remove("active"));s.classList.add("active");storyTitle.textContent=s.dataset.title;storyText.textContent=s.dataset.text;storyIndex.textContent=s.dataset.index;storyMeter.style.width=`${parseInt(s.dataset.index)*33.333}%`}}),{rootMargin:"-35% 0px -45% 0px",threshold:0});steps.forEach(s=>storyObserver.observe(s));
+const nav=document.querySelector(".nav"),menu=document.querySelector(".menu-btn");
+menu?.addEventListener("click",()=>{const open=nav.classList.toggle("open");menu.setAttribute("aria-expanded",open)});
+document.querySelectorAll(".nav-links a").forEach(a=>a.addEventListener("click",()=>nav.classList.remove("open")));
+const intro=document.getElementById("introScreen");
+function closeIntro(){intro?.classList.add("is-hidden");try{sessionStorage.setItem("kavyaaIntroSeen","1")}catch(e){}}
+try{if(sessionStorage.getItem("kavyaaIntroSeen")==="1")intro?.classList.add("is-hidden")}catch(e){}
+document.getElementById("enterPortfolio")?.addEventListener("click",closeIntro);
+document.getElementById("skipIntro")?.addEventListener("click",closeIntro);
+let ticking=false;const progress=document.getElementById("scrollProgress");
+window.addEventListener("scroll",()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=`${max>0?(scrollY/max)*100:0}%`;ticking=false})},{passive:true});
+
+// Editorial scroll-story: the left chapter title types itself whenever the active chapter changes.
+const steps=[...document.querySelectorAll(".story-step")],storyTitle=document.getElementById("storyTitle"),storyTitleText=document.getElementById("storyTitleText"),storyText=document.getElementById("storyText"),storyIndex=document.getElementById("storyIndex"),storyMeter=document.getElementById("storyMeter");
+let titleRun=0,textRun=0;
+function typeInto(el,text,speed,runRef){
+  if(!el)return;
+  const run=++runRef.value;
+  el.textContent="";
+  let i=0;
+  const tick=()=>{
+    if(run!==runRef.value)return;
+    el.textContent=text.slice(0,++i);
+    if(i<text.length)window.setTimeout(tick,speed);
+  };
+  tick();
+}
+const titleState={value:0},textState={value:0};
+function activateStory(s){
+  if(!s)return;
+  steps.forEach(x=>x.classList.toggle("active",x===s));
+  storyIndex.textContent=s.dataset.index;
+  storyMeter.style.width=`${parseInt(s.dataset.index)*33.333}%`;
+  typeInto(storyTitleText,s.dataset.title,52,titleState);
+  typeInto(storyText,s.dataset.text,13,textState);
+}
+const storyObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)activateStory(e.target)})
+},{rootMargin:"-38% 0px -42% 0px",threshold:0});
+steps.forEach(s=>storyObserver.observe(s));
+activateStory(steps[0]);
