@@ -62,3 +62,36 @@ const storyObserver=new IntersectionObserver(entries=>{
 },{rootMargin:"-38% 0px -42% 0px",threshold:0});
 steps.forEach(s=>storyObserver.observe(s));
 activateStory(steps[0]);
+
+// Lightweight animated intro status: gives the landing screen a living system feel without heavy effects.
+(function initIntroMotion(){
+  const live=document.getElementById('introLiveText');
+  const system=document.getElementById('introSystemText');
+  const percent=document.getElementById('introPercent');
+  const bar=document.getElementById('introBar');
+  const clock=document.getElementById('introClock');
+  if(!live)return;
+  const phrases=['ANALYZING DATA','FINDING SIGNAL','TRAINING MODELS','BUILDING INSIGHT','READY TO EXPLORE'];
+  const systems=['INITIALIZING ANALYTICS ENGINE','LOADING MODEL PIPELINE','MAPPING PROJECT SYSTEMS','PACKAGING INSIGHTS','PORTFOLIO READY'];
+  let step=0, progressValue=0;
+  function update(){
+    live.textContent=phrases[step%phrases.length];
+    system.textContent=systems[step%systems.length];
+    step++;
+  }
+  update();
+  setInterval(update,1600);
+  function progressTick(){
+    progressValue=Math.min(100,progressValue+1);
+    if(percent)percent.textContent=String(progressValue).padStart(2,'0')+'%';
+    if(bar)bar.style.width=progressValue+'%';
+    if(progressValue<100)requestAnimationFrame(()=>setTimeout(progressTick,26));
+  }
+  progressTick();
+  function tickClock(){
+    if(!clock)return;
+    const d=new Date();
+    clock.textContent=[d.getHours(),d.getMinutes(),d.getSeconds()].map(v=>String(v).padStart(2,'0')).join(':');
+  }
+  tickClock(); setInterval(tickClock,1000);
+})();
