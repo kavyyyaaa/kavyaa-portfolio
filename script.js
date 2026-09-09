@@ -95,3 +95,25 @@ activateStory(steps[0]);
   }
   tickClock(); setInterval(tickClock,1000);
 })();
+
+
+// Lightweight live navigation telemetry — no pointer tracking, no canvas.
+(function(){
+  const railLabel=document.getElementById('railLabel');
+  const railNumber=document.getElementById('railNumber');
+  const status=document.getElementById('streamStatus');
+  const sections=[
+    ['work','WORK','01'],['experience','BUILD LOG','02'],['skills','TOOLKIT','03'],['about','ABOUT','04'],['education','EDUCATION','05'],['achievements','ACHIEVEMENT','06'],['research','RESEARCH','07'],['certifications','CERTS','08'],['contact','CONTACT','10']
+  ];
+  const update=()=>{
+    let best=null,bestDist=Infinity;
+    const target=innerHeight*.42;
+    sections.forEach(([id,label,num])=>{const el=document.getElementById(id);if(!el)return;const d=Math.abs(el.getBoundingClientRect().top-target);if(d<bestDist){bestDist=d;best=[label,num]}});
+    if(best&&railLabel){railLabel.textContent=best[0];railNumber.textContent=best[1]}
+    if(status){
+      const words=['SIGNAL DETECTED','MAPPING FEATURES','MODEL READY','INSIGHT STREAMING','SYSTEM SYNCHRONIZED'];
+      status.textContent=words[Math.floor(scrollY/520)%words.length];
+    }
+  };
+  addEventListener('scroll',update,{passive:true}); update();
+})();
