@@ -16,11 +16,12 @@ featuredEl.innerHTML=projects.filter(p=>p.featured).map(card).join("");
 const more=()=>projects.filter(p=>!p.featured);
 const cats=["All",...new Set(more().flatMap(p=>p.categories))];
 filtersEl.innerHTML=cats.map((c,i)=>`<button class="filter ${i===0?"active":""}" data-filter="${c}">${c}</button>`).join("");
+const revealObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");revealObserver.unobserve(e.target)}}),{threshold:.12});
+function observeReveals(){document.querySelectorAll(".reveal:not(.observed)").forEach(el=>{el.classList.add("observed");revealObserver.observe(el)})}
 function renderAll(filter="All"){allEl.innerHTML=more().filter(p=>filter==="All"||p.categories.includes(filter)).map(mini).join("");observeReveals()}
 filtersEl.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{filtersEl.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");renderAll(b.dataset.filter)}));
 renderAll();
-const revealObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");revealObserver.unobserve(e.target)}}),{threshold:.12});
-function observeReveals(){document.querySelectorAll(".reveal:not(.observed)").forEach(el=>{el.classList.add("observed");revealObserver.observe(el)})}observeReveals();
+observeReveals();
 const nav=document.querySelector(".nav"),menu=document.querySelector(".menu-btn");menu.addEventListener("click",()=>{const open=nav.classList.toggle("open");menu.setAttribute("aria-expanded",open)});document.querySelectorAll(".nav-links a").forEach(a=>a.addEventListener("click",()=>nav.classList.remove("open")));
 const intro=document.getElementById("introScreen");function closeIntro(){intro?.classList.add("is-hidden");try{sessionStorage.setItem("kavyaaIntroSeen","1")}catch(e){}}try{if(sessionStorage.getItem("kavyaaIntroSeen")==="1")intro?.classList.add("is-hidden")}catch(e){}document.getElementById("enterPortfolio")?.addEventListener("click",closeIntro);document.getElementById("skipIntro")?.addEventListener("click",closeIntro);
 let ticking=false;const progress=document.getElementById("scrollProgress");window.addEventListener("scroll",()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=`${max>0?(scrollY/max)*100:0}%`;ticking=false})},{passive:true});
