@@ -102,7 +102,7 @@ activateStory(steps[0]);
   const clock=document.getElementById('introClock');
   if(!live)return;
   const phrases=['ANALYZING DATA','FINDING SIGNAL','TRAINING MODELS','BUILDING INSIGHT','READY TO EXPLORE'];
-  const systems=['INITIALIZING ANALYTICS ENGINE','LOADING MODEL PIPELINE','MAPPING PROJECT SYSTEMS','PACKAGING INSIGHTS','PORTFOLIO READY'];
+  const systems=['INITIALIZING ANALYTICS ENGINE','LOADING MODEL PIPELINE','MAPPING PROJECTS','PACKAGING INSIGHTS','PORTFOLIO READY'];
   let step=0, progressValue=0;
   function update(){
     live.textContent=phrases[step%phrases.length];
